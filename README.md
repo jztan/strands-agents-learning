@@ -37,40 +37,51 @@ By the end, you'll have deep understanding of **7 different agent architectures*
 
 ### Get Started in 4 Steps
 
+#### Step 1: Clone the Repository
 ```bash
-# 1. Clone and enter the repository
 git clone https://github.com/jztan/strands-agents-learning.git
 cd strands-agents-learning
+```
 
-# 2. Install dependencies
+#### Step 2: Install Dependencies
+```bash
+# Install core dependencies
 uv sync
 
-# For interactive Jupyter notebooks (recommended for learning):
+# For Jupyter notebooks (recommended for interactive learning)
 uv sync --dev
 
-# ⚠️ ONE-TIME: Install Jupyter kernel (required for notebooks)
+# ONE-TIME: Install Jupyter kernel (required for notebooks)
 uv run python -m ipykernel install --user --name=strands-learning --display-name="Python (Strands)"
+```
 
-# 3. Set up your API key (choose one)
+#### Step 3: Configure API Key
+```bash
+# Copy environment template
 cp .env.example .env
-# Edit .env and add one of:
-# OPENAI_API_KEY=your_openai_key_here (recommended)
-# ANTHROPIC_API_KEY=your_anthropic_key_here
 
-# 4. Choose your learning format:
+# Edit .env and add ONE of the following:
+# OPENAI_API_KEY=your_openai_key_here        # ← Recommended
+# ANTHROPIC_API_KEY=your_anthropic_key_here  # ← Alternative
+```
 
-# Option A: Python Scripts (run complete lessons)
+#### Step 4: Run Your First Lesson
+
+**Option A: Python Scripts** (complete lessons)
+```bash
 uv run python lesson_01_hello_world.py
+```
 
-# Option B: Jupyter Notebooks (interactive, cell-by-cell)
+**Option B: Jupyter Notebooks** (interactive, recommended)
+```bash
+# Using Jupyter Notebook
 uv run jupyter notebook lesson_01_hello_world.ipynb
-# The notebook will automatically use the "Python (Strands)" kernel
 
-# Or use Jupyter Lab (modern interface):
+# Or using Jupyter Lab (modern interface)
 uv run jupyter lab lesson_01_hello_world.ipynb
 ```
 
-That's it! You now have a working Strands agent with intelligent provider selection. 🎉
+✨ **That's it!** You now have a working Strands agent with intelligent provider selection.
 
 ### 📓 Two Learning Formats
 
