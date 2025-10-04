@@ -1,0 +1,3 @@
+# Jupyter Notebook settings
+*.ipynb filter=nbstripout
+*.ipynb diff=ipynb

@@ -289,7 +289,16 @@ We welcome contributions! Here's how you can help:
 git clone https://github.com/jztan/strands-agents-learning.git
 cd strands-agents-learning
 uv sync --dev
+
+# Setup git filter to auto-clean notebook outputs (recommended)
+./setup_notebook_filter.sh
 ```
+
+**Why clean notebook outputs?**
+- Keeps repository lightweight
+- Avoids huge git diffs from output changes
+- Prevents accidental exposure of API responses
+- Learners see fresh outputs when they run cells
 
 ## 📖 Additional Resources
 
