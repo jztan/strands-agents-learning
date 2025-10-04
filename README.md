@@ -52,7 +52,9 @@ uv sync
 uv sync --dev
 
 # ONE-TIME: Install Jupyter kernel (required for notebooks)
-uv run python -m ipykernel install --user --name=strands-learning --display-name="Python (Strands)"
+uv run python -m ipykernel install --user \
+  --name=strands-learning \
+  --display-name="Python (Strands)"
 ```
 
 #### Step 3: Configure API Key
