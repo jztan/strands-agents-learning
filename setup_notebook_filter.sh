@@ -1,17 +1,21 @@
 #!/bin/bash
-# Setup git filter to automatically clean notebook outputs before committing
+# Helper script to clean notebook outputs before committing
 
-echo "Setting up Jupyter notebook output filter..."
-
-# Configure git filter for notebooks
-git config filter.nbstripout.clean 'uv run jupyter nbconvert --stdin --stdout --clear-output --to notebook'
-git config filter.nbstripout.smudge cat
-git config filter.nbstripout.required true
-
-# Configure diff tool for notebooks
-git config diff.ipynb.textconv 'uv run jupyter nbconvert --stdin --stdout --to markdown'
-
-echo "✅ Git filter configured successfully!"
+echo "🧹 Cleaning Jupyter notebook outputs..."
 echo ""
-echo "From now on, notebook outputs will be automatically stripped when committing."
-echo "This keeps your repository clean and avoids large diffs."
+
+# Find all .ipynb files and clean them
+for notebook in *.ipynb; do
+    if [ -f "$notebook" ]; then
+        echo "  Cleaning: $notebook"
+        uv run jupyter nbconvert --clear-output --inplace "$notebook"
+    fi
+done
+
+echo ""
+echo "✅ All notebooks cleaned!"
+echo ""
+echo "💡 Remember to run this script before committing notebooks:"
+echo "   ./setup_notebook_filter.sh"
+echo "   git add *.ipynb"
+echo "   git commit -m 'Your message'"
