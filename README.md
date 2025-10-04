@@ -108,12 +108,12 @@ This repository provides **two formats** for each lesson:
 | | **Lesson 2: First Tool** ✅ | Tool-Enhanced | @tool decorator, calculator, error handling |
 | | **Lesson 3: Multiple Tools** ✅ | Tool-Enhanced | Tool coordination, weather/time/converter |
 | **Intermediate** | **Lesson 4: Agent State** 🚧 | State & Sessions | agent.state API, FileSessionManager, persistence |
-| | **Lesson 5: Async & Executors** 🚧 | Async Streaming | Async tools, yield, ConcurrentToolExecutor |
+| | **Lesson 5: Async & Executors** 🚧 | Async Streaming & Multi-modal | Async tools, yield, executors, images, PDFs |
 | **Advanced** | **Lesson 6: Hooks & Output** 🚧 | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
 | | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
 | **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
 | | **Lesson 9: Distributed** 🚧 | Agents-as-Tools, A2A, MCP | Hierarchical agents, cross-platform, MCP tools |
-| **Production** | **Lesson 10: Production** 🚧 | Safety & Observability | Guardrails, PII redaction, OpenTelemetry |
+| **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
 
 **Progress: 3/10 lessons complete (30%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
