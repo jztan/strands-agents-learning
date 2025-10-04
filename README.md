@@ -45,17 +45,54 @@ cd strands-agents-learning
 # 2. Install dependencies
 uv sync
 
+# For interactive Jupyter notebooks (recommended for learning):
+uv sync --dev
+
+# ⚠️ ONE-TIME: Install Jupyter kernel (required for notebooks)
+uv run python -m ipykernel install --user --name=strands-learning --display-name="Python (Strands)"
+
 # 3. Set up your API key (choose one)
 cp .env.example .env
 # Edit .env and add one of:
 # OPENAI_API_KEY=your_openai_key_here (recommended)
 # ANTHROPIC_API_KEY=your_anthropic_key_here
 
-# 4. Run your first lesson
+# 4. Choose your learning format:
+
+# Option A: Python Scripts (run complete lessons)
 uv run python lesson_01_hello_world.py
+
+# Option B: Jupyter Notebooks (interactive, cell-by-cell)
+uv run jupyter notebook lesson_01_hello_world.ipynb
+# The notebook will automatically use the "Python (Strands)" kernel
+
+# Or use Jupyter Lab (modern interface):
+uv run jupyter lab lesson_01_hello_world.ipynb
 ```
 
 That's it! You now have a working Strands agent with intelligent provider selection. 🎉
+
+### 📓 Two Learning Formats
+
+This repository supports **two ways to learn**:
+
+1. **Python Scripts** (`.py` files)
+   - ✅ Run complete lessons end-to-end
+   - ✅ Easy to execute: `uv run python lesson_XX.py`
+   - ✅ Good for seeing full flow
+   - ✅ Better for version control
+
+2. **Jupyter Notebooks** (`.ipynb` files) - **Recommended for learning!**
+   - ✅ Run code cell-by-cell
+   - ✅ Experiment and modify inline
+   - ✅ See outputs immediately
+   - ✅ Add your own notes
+   - ✅ No async event loop issues
+   - ✅ Perfect for self-paced learning
+
+**Choose based on your goal:**
+- **Learning/Experimenting?** → Use notebooks 📓
+- **Reference/Production?** → Use scripts 📄
 
 ## 📊 Progress Tracker
 
@@ -108,8 +145,9 @@ strands-agents-learning/
 ├── .gitignore                       # Git ignore configuration
 ├── LICENSE                          # Apache 2.0 license
 ├── lesson_utils.py                  # Shared utilities for all lessons
-├── lesson_01_hello_world.py         # Lesson 1: Start here! ✅
-├── lesson_02_first_tool.py          # Lesson 2: Calculator tool ✅
+├── lesson_01_hello_world.py         # Lesson 1: Python script ✅
+├── lesson_01_hello_world.ipynb      # Lesson 1: Jupyter notebook ✅
+├── lesson_02_first_tool.py          # Lesson 2: Python script ✅
 └── experiments/                     # Your experimental code goes here
     └── .gitignore                   # Keeps experiments local
 ```
@@ -221,6 +259,20 @@ uv sync
 - OpenAI/Anthropic should be fast - check internet connection
 - Local Ollama models are slower but free
 - The lessons automatically choose the fastest available provider
+
+**❌ Jupyter Notebook: "ModuleNotFoundError: No module named 'strands'"**
+```bash
+# Install the Jupyter kernel (one-time setup)
+uv run python -m ipykernel install --user --name=strands-learning --display-name="Python (Strands)"
+
+# Then restart Jupyter and the kernel will be available
+# The notebook should automatically use "Python (Strands)" kernel
+```
+
+If still not working:
+- In Jupyter: Click **Kernel** → **Change Kernel** → Select **"Python (Strands)"**
+- Verify kernel is installed: `uv run jupyter kernelspec list`
+- Should show `strands-learning` in the list
 
 ## 🤝 Contributing
 
