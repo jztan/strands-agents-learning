@@ -295,8 +295,10 @@ git clone https://github.com/jztan/strands-agents-learning.git
 cd strands-agents-learning
 uv sync --dev
 
-# Setup git filter to auto-clean notebook outputs (recommended)
+# Clean notebook outputs before committing (recommended)
 ./setup_notebook_filter.sh
+git add *.ipynb
+git commit -m "Your changes"
 ```
 
 **Why clean notebook outputs?**
@@ -304,6 +306,8 @@ uv sync --dev
 - Avoids huge git diffs from output changes
 - Prevents accidental exposure of API responses
 - Learners see fresh outputs when they run cells
+
+**Note:** Always run `./setup_notebook_filter.sh` before committing notebook changes to remove execution outputs.
 
 ## 📖 Additional Resources
 
