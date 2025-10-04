@@ -114,6 +114,7 @@ This repository provides **two formats** for each lesson:
 | **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
 | | **Lesson 9: Distributed** 🚧 | Agents-as-Tools, A2A, MCP | Hierarchical agents, cross-platform, MCP tools |
 | **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
+| **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
 **Progress: 3/10 lessons complete (30%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
