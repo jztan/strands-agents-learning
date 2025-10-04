@@ -148,6 +148,7 @@ strands-agents-learning/
 ├── lesson_01_hello_world.py         # Lesson 1: Python script ✅
 ├── lesson_01_hello_world.ipynb      # Lesson 1: Jupyter notebook ✅
 ├── lesson_02_first_tool.py          # Lesson 2: Python script ✅
+├── lesson_02_first_tool.ipynb       # Lesson 2: Jupyter notebook ✅
 └── experiments/                     # Your experimental code goes here
     └── .gitignore                   # Keeps experiments local
 ```
