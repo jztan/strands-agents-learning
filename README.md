@@ -87,25 +87,16 @@ uv run jupyter lab lesson_01_hello_world.ipynb
 
 ### 📓 Two Learning Formats
 
-This repository supports **two ways to learn**:
+This repository provides **two formats** for each lesson:
 
-1. **Python Scripts** (`.py` files)
-   - ✅ Run complete lessons end-to-end
-   - ✅ Easy to execute: `uv run python lesson_XX.py`
-   - ✅ Good for seeing full flow
-   - ✅ Better for version control
+| Format | File Type | Best For | Key Features |
+|--------|-----------|----------|--------------|
+| **Python Scripts** 📄 | `.py` | Reference & Production | • Run complete lessons end-to-end<br>• Easy execution: `uv run python lesson_XX.py`<br>• See full flow from start to finish<br>• Better for version control |
+| **Jupyter Notebooks** 📓 | `.ipynb` | Learning & Experimenting | • Run code cell-by-cell<br>• Experiment and modify inline<br>• See outputs immediately<br>• Add your own notes<br>• No async event loop issues<br>• **Recommended for self-paced learning** |
 
-2. **Jupyter Notebooks** (`.ipynb` files) - **Recommended for learning!**
-   - ✅ Run code cell-by-cell
-   - ✅ Experiment and modify inline
-   - ✅ See outputs immediately
-   - ✅ Add your own notes
-   - ✅ No async event loop issues
-   - ✅ Perfect for self-paced learning
-
-**Choose based on your goal:**
-- **Learning/Experimenting?** → Use notebooks 📓
-- **Reference/Production?** → Use scripts 📄
+**Quick decision:**
+- 🎓 **Learning/Experimenting?** → Use Jupyter Notebooks (`.ipynb`)
+- 📚 **Reference/Production?** → Use Python Scripts (`.py`)
 
 ## 📊 Progress Tracker
 
