@@ -4,23 +4,25 @@
 [![Strands](https://img.shields.io/badge/Strands-Agent%20Framework-green.svg)](https://strandsagents.com/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-> **Learn by Building**: Master the Strands Agent Framework through 7 progressive, hands-on lessons that take you from beginner to expert.
+> **Learn by Building**: Master the Strands Agent Framework through 10 comprehensive, hands-on lessons covering everything from basics to production deployment.
 
 ## 🎯 What You'll Learn
 
-This repository provides a complete **hands-on learning path** for the Strands Agent Framework. You'll master **8 agent design patterns** through progressive, practical examples:
+This repository provides a complete **hands-on learning path** for the Strands Agent Framework. You'll master **10+ agent design patterns** through progressive, practical examples:
 
-- **Basic Conversational** → **Tool-Enhanced** → **Stateful** → **Asynchronous** → **Context-Aware** → **Multi-Agent Systems**
+- **Foundation** → **Intermediate** → **Advanced** → **Multi-Agent** → **Production**
+- **Basic Conversational** → **Tool-Enhanced** → **State & Async** → **Hooks & Context** → **Multi-Agent Orchestration** → **Distributed Systems** → **Production-Ready**
 
-Each lesson teaches a distinct architectural pattern with working code you can run, modify, and build upon.
+Each lesson teaches distinct architectural patterns with working code you can run, modify, and build upon.
 
 ## ✨ Features
 
-- 🚀 **7 Progressive Lessons** - Each builds on the previous
+- 🚀 **10 Comprehensive Lessons** - Complete coverage of Strands SDK
 - 🛠️ **Hands-On Approach** - Working code you can run immediately
 - 📋 **Clear Success Criteria** - Know when you've mastered each concept
 - 🔬 **Built-in Experiments** - Explore and modify examples
 - 📚 **Complete Documentation** - Detailed explanations and troubleshooting
+- 🏗️ **Production-Ready Patterns** - Safety, security, and observability
 - ⚡ **Modern Setup** - Uses `uv` for fast Python package management
 
 ## 🏃‍♂️ Quick Start
@@ -102,36 +104,46 @@ This repository provides **two formats** for each lesson:
 
 | Level | Lesson | Agent Pattern | Topics |
 |-------|--------|---------------|--------|
-| **Beginner** | **Lesson 1: Hello World** ✅ | Basic Conversational | Agent basics, system prompts, sync/async |
+| **Foundation** | **Lesson 1: Hello World** ✅ | Basic Conversational | Agent basics, system prompts, sync/async |
 | | **Lesson 2: First Tool** ✅ | Tool-Enhanced | @tool decorator, calculator, error handling |
 | | **Lesson 3: Multiple Tools** ✅ | Tool-Enhanced | Tool coordination, weather/time/converter |
-| **Intermediate** | **Lesson 4: Stateful Tools** 🚧 | Stateful | Persistence, state management, todo lists |
-| | **Lesson 5: Async & Streaming** 🚧 | Asynchronous | File processing, progress updates |
-| **Advanced** | **Lesson 6: Context-Aware** 🚧 | Context-Aware | Self-introspection, adaptive behavior |
-| | **Lesson 7: Multi-Agent** 🚧 | Graph, Swarm & Workflow | Multi-agent collaboration patterns |
+| **Intermediate** | **Lesson 4: Agent State** 🚧 | State & Sessions | agent.state API, FileSessionManager, persistence |
+| | **Lesson 5: Async & Executors** 🚧 | Async Streaming | Async tools, yield, ConcurrentToolExecutor |
+| **Advanced** | **Lesson 6: Hooks & Output** 🚧 | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
+| | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
+| **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
+| | **Lesson 9: Distributed** 🚧 | Agents-as-Tools, A2A, MCP | Hierarchical agents, cross-platform, MCP tools |
+| **Production** | **Lesson 10: Production** 🚧 | Safety & Observability | Guardrails, PII redaction, OpenTelemetry |
 
-**Each lesson includes:** Clear learning objectives • Working code examples • Hands-on experiments • Success criteria • Common pitfalls
+**Progress: 3/10 lessons complete (30%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
 ## 🗂️ Project Structure
 
 ```
 strands-agents-learning/
-├── README.md                        # Project overview and quick start
-├── TROUBLESHOOTING.md               # Common issues and solutions
-├── pyproject.toml                   # Project dependencies
-├── .env.example                     # Environment variables template
-├── .gitignore                       # Git ignore configuration
-├── LICENSE                          # Apache 2.0 license
-├── lesson_utils.py                  # Shared utilities for all lessons
-├── lesson_01_hello_world.py         # Lesson 1: Python script ✅
-├── lesson_01_hello_world.ipynb      # Lesson 1: Jupyter notebook ✅
-├── lesson_02_first_tool.py          # Lesson 2: Python script ✅
-├── lesson_02_first_tool.ipynb       # Lesson 2: Jupyter notebook ✅
-├── lesson_03_multiple_tools.py      # Lesson 3: Python script ✅
-├── lesson_03_multiple_tools.ipynb   # Lesson 3: Jupyter notebook ✅
-├── setup_notebook_filter.sh         # Clean notebook outputs before commits
-└── experiments/                     # Your experimental code goes here
-    └── .gitignore                   # Keeps experiments local
+├── README.md                           # Project overview and quick start
+├── TROUBLESHOOTING.md                  # Common issues and solutions
+├── pyproject.toml                      # Project dependencies
+├── .env.example                        # Environment variables template
+├── .gitignore                          # Git ignore configuration
+├── LICENSE                             # Apache 2.0 license
+├── lesson_utils.py                     # Shared utilities for all lessons
+├── lesson_01_hello_world.py            # Lesson 1: Python script ✅
+├── lesson_01_hello_world.ipynb         # Lesson 1: Jupyter notebook ✅
+├── lesson_02_first_tool.py             # Lesson 2: Python script ✅
+├── lesson_02_first_tool.ipynb          # Lesson 2: Jupyter notebook ✅
+├── lesson_03_multiple_tools.py         # Lesson 3: Python script ✅
+├── lesson_03_multiple_tools.ipynb      # Lesson 3: Jupyter notebook ✅
+├── lesson_04_agent_state.py            # Lesson 4: Python script 🚧
+├── lesson_05_async_executors.py        # Lesson 5: Python script 🚧
+├── lesson_06_hooks_structured.py       # Lesson 6: Python script 🚧
+├── lesson_07_advanced_tools.py         # Lesson 7: Python script 🚧
+├── lesson_08_multi_agent.py            # Lesson 8: Python script 🚧
+├── lesson_09_distributed_agents.py     # Lesson 9: Python script 🚧
+├── lesson_10_production.py             # Lesson 10: Python script 🚧
+├── setup_notebook_filter.sh            # Clean notebook outputs before commits
+└── experiments/                        # Your experimental code goes here
+    └── .gitignore                      # Keeps experiments local
 ```
 
 ## 💡 Learning Tips
