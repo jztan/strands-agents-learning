@@ -159,51 +159,58 @@ def system_prompt_examples():
 
 def model_configuration_example():
     """
-    This example demonstrates model configuration using the shared utilities.
-    The actual model selection is handled by lesson_utils.create_working_model()
-    which uses intelligent provider fallback.
+    Demonstrates context-aware model configuration.
+    The context parameter adjusts temperature and max_tokens for different use cases.
     """
-    print("\n📍 Part 3: Model Configuration")
-    print("-" * 35)
+    print("\n📍 Part 3: Context-Aware Model Configuration")
+    print("-" * 50)
 
     # Check if any API keys are available
     if not check_api_keys():
-        print("⚠️ No API keys configured. Showing how model configuration works.")
-        print("   The lesson_utils.create_working_model() function handles:")
-        print("   • OpenAI (gpt-4o-mini) - First choice")
-        print("   • Anthropic (claude-3-5-haiku) - Second choice")
-        print("   • Ollama (local models) - Third choice")
+        print("⚠️ No API keys configured. Showing how configuration works.")
+        print("   Context-based configurations available:")
+        print("   • 'demonstration' - Predictable (temp=0.5, tokens=300)")
+        print("   • 'creative' - Varied (temp=0.9, tokens=800)")
+        print("   • 'precise' - Deterministic (temp=0.3, tokens=500)")
+        print("   • Default - Standard (temp=0.7, tokens=500)")
         return
 
     try:
-        # Use shared utilities for consistent model creation
-        model = create_working_model("Part 3 demonstration")
-        if not model:
-            print("❌ No working model configuration found")
-            return
+        print("Testing different configurations:\n")
+        creative_prompt = "Describe a sunset in 2-3 sentences"
 
-        print("✅ Model configured successfully using shared utilities")
-        print("   • Provider selection handled automatically")
-        print("   • Configuration consistent across all lessons")
-        print("   • Fallback logic for reliability")
+        # Test 1: Demonstration mode (predictable, short)
+        print("1️⃣ Demonstration mode (predictable, concise):")
+        model_demo = create_working_model("Part 3 demonstration")
+        if model_demo:
+            agent_demo = Agent(model=model_demo)
+            response = agent_demo(creative_prompt)
+            print(f"   {response}\n")
 
-        # Create agent with the configured model
-        agent = Agent(
-            model=model,
-            system_prompt="You are a concise, helpful assistant. Keep responses under 2 sentences."
-        )
+        # Test 2: Creative mode (varied, expressive)
+        print("2️⃣ Creative mode (expressive, varied):")
+        model_creative = create_working_model("creative writing")
+        if model_creative:
+            agent_creative = Agent(model=model_creative)
+            response = agent_creative(creative_prompt)
+            print(f"   {response}\n")
 
-        print("✅ Agent with configured model created")
+        # Test 3: Precise mode (deterministic)
+        print("3️⃣ Precise mode (factual, deterministic):")
+        model_precise = create_working_model("precise calculation")
+        if model_precise:
+            agent_precise = Agent(model=model_precise)
+            response = agent_precise("Calculate: (25 * 4) + 100")
+            print(f"   {response}\n")
 
-        # Test the configured agent
-        try:
-            response = agent("Explain machine learning in simple terms")
-            print(f"🤖 Agent response: {response}")
-        except Exception as e:
-            print(f"⚠️ Model test failed: {e}")
+        print("✅ Configuration impact:")
+        print("   • Demo: temp=0.5, tokens=300 (moderate creativity)")
+        print("   • Creative: temp=0.9, tokens=800 (high variation)")
+        print("   • Precise: temp=0.3, tokens=500 (consistent outputs)")
+        print("\n   Run multiple times to see variation in creative mode!")
 
     except Exception as e:
-        print(f"❌ Model configuration failed: {e}")
+        print(f"❌ Configuration test failed: {e}")
 
 # ============================================================================
 # Part 4: Async Operations

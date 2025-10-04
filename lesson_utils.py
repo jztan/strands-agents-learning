@@ -91,24 +91,47 @@ def create_working_model(lesson_name=""):
     3. Ollama (local models) - Free but slower
 
     Args:
-        lesson_name (str): Optional lesson name for context in messages
+        lesson_name (str): Optional context for adjusting model configuration.
+            - "demonstration"/"demo": Lower temp (0.5), fewer tokens (300) - predictable
+            - "creative": Higher temp (0.9), more tokens (800) - varied responses
+            - "precise"/"tool": Very low temp (0.3), standard tokens (500) - deterministic
+            - Default: Standard settings (0.7 temp, 500 tokens)
 
     Returns:
         Model instance or None if no providers are available
     """
     lesson_context = f" for {lesson_name}" if lesson_name else ""
 
+    # Determine configuration based on context
+    context_lower = lesson_name.lower()
+    if "demo" in context_lower or "demonstration" in context_lower:
+        temperature = 0.5
+        max_tokens = 300
+        config_note = " (predictable mode)"
+    elif "creative" in context_lower:
+        temperature = 0.9
+        max_tokens = 800
+        config_note = " (creative mode)"
+    elif "precise" in context_lower or "tool" in context_lower:
+        temperature = 0.3
+        max_tokens = 500
+        config_note = " (precise mode)"
+    else:
+        temperature = DEFAULT_TEMPERATURE
+        max_tokens = DEFAULT_MAX_TOKENS
+        config_note = ""
+
     # Try OpenAI first (preferred for speed/cost)
     if OPENAI_AVAILABLE:
         openai_key = os.getenv("OPENAI_API_KEY")
         if openai_key:
-            print(f"🚀 Using OpenAI {OPENAI_MODEL}{lesson_context}")
+            print(f"🚀 Using OpenAI {OPENAI_MODEL}{lesson_context}{config_note}")
             return OpenAIModel(
                 client_args={"api_key": openai_key},
                 model_id=OPENAI_MODEL,
                 params={
-                    "max_tokens": DEFAULT_MAX_TOKENS,
-                    "temperature": DEFAULT_TEMPERATURE
+                    "max_tokens": max_tokens,
+                    "temperature": temperature
                 }
             )
 
@@ -116,17 +139,17 @@ def create_working_model(lesson_name=""):
     if ANTHROPIC_AVAILABLE:
         anthropic_key = os.getenv("ANTHROPIC_API_KEY")
         if anthropic_key:
-            print(f"🔮 Using Anthropic {ANTHROPIC_MODEL}{lesson_context}")
+            print(f"🔮 Using Anthropic {ANTHROPIC_MODEL}{lesson_context}{config_note}")
             return AnthropicModel(
                 client_args={"api_key": anthropic_key},
-                max_tokens=DEFAULT_MAX_TOKENS,
+                max_tokens=max_tokens,
                 model_id=ANTHROPIC_MODEL,
-                params={"temperature": DEFAULT_TEMPERATURE}
+                params={"temperature": temperature}
             )
 
     # Try Ollama third (local option)
     if OLLAMA_AVAILABLE:
-        ollama_model = _try_ollama_connection(lesson_context)
+        ollama_model = _try_ollama_connection(lesson_context, config_note)
         if ollama_model:
             return ollama_model
 
@@ -134,7 +157,7 @@ def create_working_model(lesson_name=""):
     print_no_working_model_error()
     return None
 
-def _try_ollama_connection(lesson_context=""):
+def _try_ollama_connection(lesson_context="", config_note=""):
     """
     Attempt to connect to local Ollama server and return a working model.
 
@@ -148,7 +171,7 @@ def _try_ollama_connection(lesson_context=""):
             models = response.json().get("models", [])
             if models:
                 model_name = models[0]["name"]  # Use first available model
-                print(f"🏠 Using Ollama local model: {model_name}{lesson_context}")
+                print(f"🏠 Using Ollama local model: {model_name}{lesson_context}{config_note}")
                 return OllamaModel(
                     host="http://localhost:11434",
                     model_id=model_name
