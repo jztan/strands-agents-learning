@@ -213,7 +213,7 @@ def model_configuration_example():
         print(f"❌ Configuration test failed: {e}")
 
 # ============================================================================
-# Part 4: Async Operations
+# Part 5: Async Operations
 # ============================================================================
 
 async def async_agent_example():
@@ -221,7 +221,7 @@ async def async_agent_example():
     For production applications, you'll often want async operations.
     This is essential when building web services or handling multiple conversations.
     """
-    print("\n📍 Part 4: Async Agent Operations")
+    print("\n📍 Part 5: Async Agent Operations")
     print("-" * 37)
 
     # Create an agent with working model configuration
@@ -264,7 +264,7 @@ async def async_agent_example():
         print(f"⚠️ Async test failed: {e}")
 
 # ============================================================================
-# Part 5: Streaming Responses (Real-time)
+# Part 6: Streaming Responses (Real-time)
 # ============================================================================
 
 async def streaming_example():
@@ -272,7 +272,7 @@ async def streaming_example():
     For better user experience, you can stream responses as they're generated.
     This shows text appearing in real-time, like ChatGPT's interface.
     """
-    print("\n📍 Part 5: Streaming Responses")
+    print("\n📍 Part 6: Streaming Responses")
     print("-" * 32)
 
     working_model = create_working_model()
@@ -301,7 +301,7 @@ async def streaming_example():
         print(f"⚠️ Streaming test failed: {e}")
 
 # ============================================================================
-# Part 6: Multi-turn Conversations
+# Part 4: Multi-turn Conversations
 # ============================================================================
 
 def multi_turn_conversation():
@@ -309,7 +309,7 @@ def multi_turn_conversation():
     Agents automatically maintain conversation context.
     This enables natural back-and-forth conversations.
     """
-    print("\n📍 Part 6: Multi-turn Conversations")
+    print("\n📍 Part 4: Multi-turn Conversations")
     print("-" * 38)
 
     working_model = create_working_model()
