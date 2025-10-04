@@ -150,8 +150,8 @@ def basic_calculator_agent():
 
     for question in test_questions:
         print(f"\n👤 Question: {question}")
-        response = agent(question)
-        print(f"🤖 Agent: {response}")
+        agent(question)
+        print()
 
 # ============================================================================
 # Part 3: Error Handling and Edge Cases
@@ -188,8 +188,8 @@ def test_error_handling():
 
     for test_case in error_test_cases:
         print(f"\n👤 Question: {test_case}")
-        response = agent(test_case)
-        print(f"🤖 Agent: {response}")
+        agent(test_case)
+        print()
 
 # ============================================================================
 # Part 4: Tool Selection Logic
@@ -228,8 +228,8 @@ def test_tool_selection():
 
     for question in mixed_questions:
         print(f"\n👤 Question: {question}")
-        response = agent(question)
-        print(f"🤖 Agent: {response}")
+        agent(question)
+        print()
         # Note: In real usage, you might want to check if the tool was actually called
 
 # ============================================================================
@@ -264,8 +264,8 @@ def test_complex_calculations():
 
     for question in complex_questions:
         print(f"\n👤 Question: {question}")
-        response = agent(question)
-        print(f"🤖 Agent: {response}")
+        agent(question)
+        print()
 
 # ============================================================================
 # Part 6: Async Tool Usage

@@ -136,16 +136,16 @@ def system_prompt_examples():
 
         try:
             print("🤖 Helpful Assistant:")
-            response = helpful_agent(question)
-            print(f"   {response}\n")
+            helpful_agent(question)
+            print()
 
             print("🏴‍☠️ Pirate Assistant:")
-            response = pirate_agent(question)
-            print(f"   {response}\n")
+            pirate_agent(question)
+            print()
 
             print("🔬 Scientific Researcher:")
-            response = scientist_agent(question)
-            print(f"   {response}\n")
+            scientist_agent(question)
+            print()
 
         except Exception as e:
             print(f"⚠️ Personality test failed: {e}")
@@ -184,24 +184,24 @@ def model_configuration_example():
         model_demo = create_working_model("Part 3 demonstration")
         if model_demo:
             agent_demo = Agent(model=model_demo)
-            response = agent_demo(creative_prompt)
-            print(f"   {response}\n")
+            agent_demo(creative_prompt)
+            print()
 
         # Test 2: Creative mode (varied, expressive)
         print("2️⃣ Creative mode (expressive, varied):")
         model_creative = create_working_model("creative writing")
         if model_creative:
             agent_creative = Agent(model=model_creative)
-            response = agent_creative(creative_prompt)
-            print(f"   {response}\n")
+            agent_creative(creative_prompt)
+            print()
 
         # Test 3: Precise mode (deterministic)
         print("3️⃣ Precise mode (factual, deterministic):")
         model_precise = create_working_model("precise calculation")
         if model_precise:
             agent_precise = Agent(model=model_precise)
-            response = agent_precise("Calculate: (25 * 4) + 100")
-            print(f"   {response}\n")
+            agent_precise("Calculate: (25 * 4) + 100")
+            print()
 
         print("✅ Configuration impact:")
         print("   • Demo: temp=0.5, tokens=300 (moderate creativity)")
