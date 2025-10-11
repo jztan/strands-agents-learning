@@ -34,6 +34,7 @@ Each lesson teaches distinct architectural patterns with working code you can ru
 - **AI Model API Key** - Choose one:
   - **OpenAI** ([get key](https://platform.openai.com/api-keys)) - Recommended
   - **Anthropic** ([get key](https://console.anthropic.com/)) - Alternative
+  - **Google Gemini** ([get key](https://aistudio.google.com/app/apikey)) - Alternative
   - **Ollama** (local, free) - For advanced users
 - Basic understanding of Python async/await and decorators
 
@@ -67,6 +68,7 @@ cp .env.example .env
 # Edit .env and add ONE of the following:
 # OPENAI_API_KEY=your_openai_key_here        # ← Recommended
 # ANTHROPIC_API_KEY=your_anthropic_key_here  # ← Alternative
+# GOOGLE_API_KEY=your_google_key_here        # ← Alternative
 ```
 
 #### Step 4: Run Your First Lesson
@@ -118,36 +120,18 @@ This repository provides **two formats** for each lesson:
 
 **Progress: 5/10 lessons complete (50%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
-## 🗂️ Project Structure
+## 🗂️ Repository Overview
 
-```
-strands-agents-learning/
-├── README.md                           # Project overview and quick start
-├── TROUBLESHOOTING.md                  # Common issues and solutions
-├── pyproject.toml                      # Project dependencies
-├── .env.example                        # Environment variables template
-├── .gitignore                          # Git ignore configuration
-├── LICENSE                             # Apache 2.0 license
-├── lesson_utils.py                     # Shared utilities for all lessons
-├── lesson_01_hello_world.py            # Lesson 1: Python script ✅
-├── lesson_01_hello_world.ipynb         # Lesson 1: Jupyter notebook ✅
-├── lesson_02_first_tool.py             # Lesson 2: Python script ✅
-├── lesson_02_first_tool.ipynb          # Lesson 2: Jupyter notebook ✅
-├── lesson_03_multiple_tools.py         # Lesson 3: Python script ✅
-├── lesson_03_multiple_tools.ipynb      # Lesson 3: Jupyter notebook ✅
-├── lesson_04_agent_state.py            # Lesson 4: Python script ✅
-├── lesson_04_agent_state.ipynb         # Lesson 4: Jupyter notebook ✅
-├── lesson_05_async_executors.py        # Lesson 5: Python script ✅
-├── lesson_05_async_executors.ipynb     # Lesson 5: Jupyter notebook ✅
-├── lesson_06_hooks_structured.py       # Lesson 6: Python script 🚧
-├── lesson_07_advanced_tools.py         # Lesson 7: Python script 🚧
-├── lesson_08_multi_agent.py            # Lesson 8: Python script 🚧
-├── lesson_09_distributed_agents.py     # Lesson 9: Python script 🚧
-├── lesson_10_production.py             # Lesson 10: Python script 🚧
-├── setup_notebook_filter.sh            # Clean notebook outputs before commits
-└── experiments/                        # Your experimental code goes here
-    └── .gitignore                      # Keeps experiments local
-```
+Each lesson comes in two formats:
+- **`.py` files** - Complete Python scripts for reference
+- **`.ipynb` files** - Interactive Jupyter notebooks for learning
+
+Key files:
+- `lesson_utils.py` - Shared utilities (model creation, environment setup)
+- `.env.example` - Template for API key configuration
+- `experiments/` - Your sandbox for trying variations (gitignored)
+
+For detailed project structure and development setup, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 💡 Learning Tips
 
@@ -161,15 +145,13 @@ strands-agents-learning/
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
+We welcome contributions! Whether you want to report bugs, suggest improvements, or submit code - we'd love your help.
 
-- 🐛 **Report Issues**: Found a bug or unclear explanation? [Open an issue](https://github.com/jztan/strands-agents-learning/issues)
-- 💡 **Suggest Improvements**: Ideas for better examples or explanations
-- 🔧 **Submit PRs**: Fix bugs, improve code, or add new examples
-- 📚 **Improve Documentation**: Make explanations clearer
-- ⭐ **Share**: Star the repo if it helped you learn!
-
-**Note:** When contributing notebook changes, run `./setup_notebook_filter.sh` before committing to remove execution outputs. This keeps the repository lightweight and prevents accidental exposure of API responses.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Development setup and workflow
+- Coding standards and best practices
+- Testing guidelines
+- How to submit pull requests
 
 ## 📖 Additional Resources
 

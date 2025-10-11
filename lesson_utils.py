@@ -65,6 +65,12 @@ try:
 except ImportError:
     OLLAMA_AVAILABLE = False
 
+try:
+    from strands.models.gemini import GeminiModel
+    GEMINI_AVAILABLE = True
+except ImportError:
+    GEMINI_AVAILABLE = False
+
 # ============================================================================
 # Configuration Constants
 # ============================================================================
@@ -76,6 +82,7 @@ DEFAULT_TEMPERATURE = 0.7
 # Provider-specific model IDs
 OPENAI_MODEL = "gpt-4o-mini"
 ANTHROPIC_MODEL = "claude-3-5-haiku-20241022"
+GEMINI_MODEL = "gemini-2.0-flash"
 
 # ============================================================================
 # Multi-Provider Model Creation
@@ -88,7 +95,8 @@ def create_working_model(lesson_name=""):
     Tries providers in order of preference:
     1. OpenAI (gpt-4o-mini) - Fast and cost-effective
     2. Anthropic (claude-3-5-haiku-20241022) - Good for Strands
-    3. Ollama (local models) - Free but slower
+    3. Google Gemini (gemini-2.0-flash-lite) - Balanced performance
+    4. Ollama (local models) - Free but slower
 
     Args:
         lesson_name (str): Optional context for adjusting model configuration.
@@ -147,7 +155,21 @@ def create_working_model(lesson_name=""):
                 params={"temperature": temperature}
             )
 
-    # Try Ollama third (local option)
+    # Try Gemini third
+    if GEMINI_AVAILABLE:
+        gemini_key = os.getenv("GOOGLE_API_KEY")
+        if gemini_key:
+            print(f"🔷 Using Google Gemini {GEMINI_MODEL}{lesson_context}{config_note}")
+            return GeminiModel(
+                client_args={"api_key": gemini_key},
+                model_id=GEMINI_MODEL,
+                params={
+                    "max_output_tokens": max_tokens,
+                    "temperature": temperature
+                }
+            )
+
+    # Try Ollama fourth (local option)
     if OLLAMA_AVAILABLE:
         ollama_model = _try_ollama_connection(lesson_context, config_note)
         if ollama_model:
@@ -193,8 +215,9 @@ def check_api_keys():
     """
     openai_key = os.getenv("OPENAI_API_KEY")
     anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+    gemini_key = os.getenv("GOOGLE_API_KEY")
 
-    if not openai_key and not anthropic_key:
+    if not openai_key and not anthropic_key and not gemini_key:
         print_no_api_key_warning()
         return False
 
@@ -204,6 +227,8 @@ def check_api_keys():
         available_providers.append("OpenAI")
     if anthropic_key and len(anthropic_key) > 10 and not anthropic_key.startswith("your_"):
         available_providers.append("Anthropic")
+    if gemini_key and len(gemini_key) > 10 and not gemini_key.startswith("your_"):
+        available_providers.append("Google Gemini")
 
     if available_providers:
         print(f"✅ API keys detected: {', '.join(available_providers)}")
@@ -225,6 +250,7 @@ def print_no_api_key_warning():
     print("   2. Add one of these API keys:")
     print("      • OPENAI_API_KEY (get from: https://platform.openai.com/api-keys)")
     print("      • ANTHROPIC_API_KEY (get from: https://console.anthropic.com/)")
+    print("      • GOOGLE_API_KEY (get from: https://aistudio.google.com/app/apikey)")
     print("   3. Or run Ollama locally for free (slower)")
     print("      • Install: https://ollama.ai")
     print("      • Run: ollama serve")
@@ -236,6 +262,7 @@ def print_no_working_model_error():
     print("   Please set up at least one:")
     print("   • OPENAI_API_KEY (recommended - fast & cost-effective)")
     print("   • ANTHROPIC_API_KEY (alternative - Strands optimized)")
+    print("   • GOOGLE_API_KEY (alternative - balanced performance)")
     print("   • Or run Ollama locally (free but slower)")
 
 def print_troubleshooting():
@@ -244,10 +271,12 @@ def print_troubleshooting():
     print("1. Make sure your .env file has at least one API key:")
     print("   • OPENAI_API_KEY (recommended)")
     print("   • ANTHROPIC_API_KEY (alternative)")
+    print("   • GOOGLE_API_KEY (alternative)")
     print("2. Run `uv sync` to install dependencies")
     print("3. Verify API keys are valid:")
     print("   • OpenAI: https://platform.openai.com/api-keys")
     print("   • Anthropic: https://console.anthropic.com/")
+    print("   • Google Gemini: https://aistudio.google.com/app/apikey")
     print("4. Check account credits/usage limits")
     print("5. For Ollama: ensure server is running (`ollama serve`)")
 
@@ -294,6 +323,7 @@ __all__ = [
     "setup_lesson_environment",
     "OPENAI_AVAILABLE",
     "ANTHROPIC_AVAILABLE",
+    "GEMINI_AVAILABLE",
     "OLLAMA_AVAILABLE",
     "DEFAULT_MAX_TOKENS",
     "DEFAULT_TEMPERATURE"
