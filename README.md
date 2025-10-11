@@ -108,15 +108,15 @@ This repository provides **two formats** for each lesson:
 | | **Lesson 2: First Tool** ✅ | Tool-Enhanced | @tool decorator, calculator, error handling |
 | | **Lesson 3: Multiple Tools** ✅ | Tool-Enhanced | Tool coordination, weather/time/converter |
 | **Intermediate** | **Lesson 4: Agent State** ✅ | State & Sessions | agent.state API, FileSessionManager, persistence |
-| | **Lesson 5: Async & Executors** 🚧 | Async Streaming & Multi-modal | Async tools, yield, executors, images, PDFs |
+| | **Lesson 5: Async & Executors** ✅ | Async Streaming & Multi-modal | Async tools, yield, executors, images, PDFs |
 | **Advanced** | **Lesson 6: Hooks & Output** 🚧 | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
-| | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
+| | **Lesson 7: Advanced Tools & MCP** 🚧 | Context-Aware & Integration | Class-based tools, ToolContext, conversation mgmt, MCP |
 | **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
-| | **Lesson 9: Distributed** 🚧 | Agents-as-Tools, A2A, MCP | Hierarchical agents, cross-platform, MCP tools |
+| | **Lesson 9: Distributed Agents** 🚧 | Agents-as-Tools & A2A | Hierarchical agents, cross-platform communication |
 | **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
 | **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
-**Progress: 4/10 lessons complete (40%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
+**Progress: 5/10 lessons complete (50%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
 ## 🗂️ Project Structure
 
@@ -135,8 +135,10 @@ strands-agents-learning/
 ├── lesson_02_first_tool.ipynb          # Lesson 2: Jupyter notebook ✅
 ├── lesson_03_multiple_tools.py         # Lesson 3: Python script ✅
 ├── lesson_03_multiple_tools.ipynb      # Lesson 3: Jupyter notebook ✅
-├── lesson_04_agent_state.py            # Lesson 4: Python script 🚧
-├── lesson_05_async_executors.py        # Lesson 5: Python script 🚧
+├── lesson_04_agent_state.py            # Lesson 4: Python script ✅
+├── lesson_04_agent_state.ipynb         # Lesson 4: Jupyter notebook ✅
+├── lesson_05_async_executors.py        # Lesson 5: Python script ✅
+├── lesson_05_async_executors.ipynb     # Lesson 5: Jupyter notebook ✅
 ├── lesson_06_hooks_structured.py       # Lesson 6: Python script 🚧
 ├── lesson_07_advanced_tools.py         # Lesson 7: Python script 🚧
 ├── lesson_08_multi_agent.py            # Lesson 8: Python script 🚧

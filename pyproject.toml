@@ -28,6 +28,7 @@ dependencies = [
     "openai>=1.107.2",
     "anthropic>=0.25.0",
     "requests>=2.31.0",
+    "Pillow>=10.0.0",
 ]
 
 [project.optional-dependencies]
