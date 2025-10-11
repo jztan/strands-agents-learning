@@ -107,7 +107,7 @@ This repository provides **two formats** for each lesson:
 | **Foundation** | **Lesson 1: Hello World** ✅ | Basic Conversational | Agent basics, system prompts, sync/async |
 | | **Lesson 2: First Tool** ✅ | Tool-Enhanced | @tool decorator, calculator, error handling |
 | | **Lesson 3: Multiple Tools** ✅ | Tool-Enhanced | Tool coordination, weather/time/converter |
-| **Intermediate** | **Lesson 4: Agent State** 🚧 | State & Sessions | agent.state API, FileSessionManager, persistence |
+| **Intermediate** | **Lesson 4: Agent State** ✅ | State & Sessions | agent.state API, FileSessionManager, persistence |
 | | **Lesson 5: Async & Executors** 🚧 | Async Streaming & Multi-modal | Async tools, yield, executors, images, PDFs |
 | **Advanced** | **Lesson 6: Hooks & Output** 🚧 | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
 | | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
@@ -116,7 +116,7 @@ This repository provides **two formats** for each lesson:
 | **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
 | **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
-**Progress: 3/10 lessons complete (30%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
+**Progress: 4/10 lessons complete (40%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
 ## 🗂️ Project Structure
 
