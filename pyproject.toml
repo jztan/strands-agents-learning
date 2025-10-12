@@ -31,14 +31,15 @@ dependencies = [
     "boto3>=1.28.0",
     "requests>=2.31.0",
     "Pillow>=10.0.0",
+    "ipython>=8.18.1",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.29.0",
+    "nbformat>=5.9.0",
+    "rich>=13.7.0",
+    "reportlab>=4.0.0",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "ipython>=8.18.1",
-    "jupyter>=1.0.0",
-    "rich>=13.7.0",
-]
 tools = [
     "strands-agents-tools>=0.2.0",
 ]
@@ -57,13 +58,7 @@ build-backend = "hatchling.build"
 packages = ["."]
 
 [tool.uv]
-dev-dependencies = [
-    "ipython>=8.18.1",
-    "jupyter>=1.0.0",
-    "ipykernel>=6.29.0",
-    "nbformat>=5.9.0",
-    "rich>=13.7.0",
-]
+dev-dependencies = []
 
 [tool.hatch.metadata]
 allow-direct-references = true

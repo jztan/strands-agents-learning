@@ -486,20 +486,110 @@ async def part5_multimodal_content():
     print("\n   💰 Extracted Data:")
     print(f"   {response}")
 
-    # Clean up
+    # Example 3: PDF Document Processing
+    print("\n3. PDF Document Processing Demo:")
+    print("   Creating and analyzing a sample PDF document...")
+
+    # Create sample PDF
+    try:
+        from reportlab.lib.pagesizes import letter
+        from reportlab.pdfgen import canvas
+        from reportlab.lib.units import inch
+
+        pdf_path = "sample_report.pdf"
+        c = canvas.Canvas(pdf_path, pagesize=letter)
+        width, height = letter
+
+        # Add title
+        c.setFont("Helvetica-Bold", 16)
+        c.drawString(1 * inch, height - 1 * inch, "Quarterly Sales Report - Q4 2024")
+
+        # Add content
+        c.setFont("Helvetica", 12)
+        y = height - 1.5 * inch
+        lines = [
+            "Executive Summary:",
+            "",
+            "• Total Revenue: $2,450,000",
+            "• Growth Rate: +23% YoY",
+            "• Top Product: Enterprise Platform (45% of sales)",
+            "• Customer Acquisition: 150 new clients",
+            "• Customer Retention: 94%",
+            "",
+            "Regional Performance:",
+            "• North America: $1,200,000 (49%)",
+            "• Europe: $800,000 (33%)",
+            "• Asia Pacific: $450,000 (18%)",
+            "",
+            "Key Initiatives for Q1 2025:",
+            "1. Launch mobile application",
+            "2. Expand European operations",
+            "3. Enhance customer support infrastructure",
+        ]
+
+        for line in lines:
+            c.drawString(1 * inch, y, line)
+            y -= 0.25 * inch
+
+        c.save()
+        print(f"   ✓ Created PDF: {pdf_path}")
+
+        # Read PDF as bytes
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+
+        # Analyze PDF with agent
+        pdf_analyzer = Agent(
+            model=model,
+            system_prompt=(
+                "You are a business document analyst. "
+                "Analyze PDF reports and summarize key metrics and insights."
+            ),
+        )
+
+        print(f"   Analyzing {pdf_path}...\n")
+
+        # Pass PDF in message (same format as images, but with 'pdf' format)
+        message = [
+            {"text": "Analyze this quarterly report and summarize the key findings:"},
+            {"document": {"format": "pdf", "name": pdf_path, "source": {"bytes": pdf_bytes}}},
+        ]
+
+        response = await pdf_analyzer.invoke_async(message)
+
+        print("\n   📊 PDF Analysis Result:")
+        print(f"   {response}")
+
+        # Clean up PDF
+        print(f"\n🧹 Cleaning up: Removing {pdf_path}")
+        os.remove(pdf_path)
+
+    except ImportError:
+        print("   ⚠️  reportlab not installed - skipping PDF example")
+        print("   Install with: uv pip install reportlab")
+        print("   Continuing with other examples...\n")
+
+    # Clean up receipt
     print(f"\n🧹 Cleaning up: Removing {receipt_path}")
     os.remove(receipt_path)
 
     # Educational notes
     print("\n💡 Key Takeaways:")
     print("   ✓ Images passed directly in messages (provider-agnostic)")
+    print("   ✓ PDFs passed using 'document' format with bytes")
     print("   ✓ Works with OpenAI, Anthropic, and other vision models")
-    print("   ✓ Bedrock Converse format: {'image': {'format': 'png', ...}}")
+    print("   ✓ Bedrock Converse format for multi-modal content")
     print("   ✓ Multi-modal enables OCR, document analysis, visual QA")
-    print("\n   Multi-modal message format:")
+    print("\n   Multi-modal message formats:")
+    print("   # Images")
     print("   message = [")
-    print("       {'text': 'Describe this image'},")
+    print("       {'text': 'Analyze this image'},")
     print("       {'image': {'format': 'png', 'source': {'bytes': img_bytes}}}")
+    print("   ]")
+    print("   # PDFs")
+    print("   message = [")
+    print("       {'text': 'Analyze this document'},")
+    print("       {'document': {'format': 'pdf', 'source': {'bytes': pdf_bytes}}}")
     print("   ]")
 
 

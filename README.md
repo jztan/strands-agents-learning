@@ -49,11 +49,8 @@ cd strands-agents-learning
 
 #### Step 2: Install Dependencies
 ```bash
-# Install core dependencies
+# Install all dependencies
 uv sync
-
-# For Jupyter notebooks (recommended for interactive learning)
-uv sync --dev
 
 # ONE-TIME: Install Jupyter kernel (required for notebooks)
 uv run python -m ipykernel install --user \
