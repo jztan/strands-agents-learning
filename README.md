@@ -114,13 +114,13 @@ Python scripts are provided for reference and production use.
 | **Intermediate** | **Lesson 4: Agent State** ✅ | State & Sessions | agent.state API, FileSessionManager, persistence |
 | | **Lesson 5: Async, Executors & MCP** ✅ | Async Streaming, Multi-modal & Integration | Async tools, yield, executors, images, PDFs, MCP |
 | **Advanced** | **Lesson 6: Hooks & Output** ✅ | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
-| | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
+| | **Lesson 7: Advanced Tools** ✅ | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
 | **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
 | | **Lesson 9: Distributed Agents** 🚧 | Agents-as-Tools & A2A | Hierarchical agents, cross-platform communication |
 | **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
 | **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
-**Progress: 6/10 lessons complete (60%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
+**Progress: 7/10 lessons complete (70%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
 ## 💡 Learning Tips
 
