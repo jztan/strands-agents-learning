@@ -155,8 +155,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
 ## 📖 Additional Resources
 
-- **[Strands Documentation](https://strandsagents.com/latest/documentation/)** - Official framework docs
-- **[Strands GitHub](https://github.com/strandsagents/strands-agents)** - Source code and issues
+- **[Strands Documentation](https://strandsagents.com/latest/documentation/docs/)** - Official framework docs
+- **[Strands GitHub](https://github.com/strands-agents/sdk-python)** - Source code and issues
 
 ## 📄 License
 
