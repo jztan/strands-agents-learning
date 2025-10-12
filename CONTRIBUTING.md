@@ -37,6 +37,20 @@ Help make explanations clearer:
 - Share with others learning Strands
 - Write blog posts or create videos
 
+## 🗂️ Repository Overview
+
+Each lesson comes in two formats:
+- **`.py` files** - Complete Python scripts for reference and direct execution
+- **`.ipynb` files** - Interactive Jupyter notebooks for hands-on learning
+
+Key files:
+- `lesson_utils.py` - Shared utilities (model creation, environment setup, error handling)
+- `.env.example` - Template for API key configuration
+- `experiments/` - Your sandbox for trying variations (gitignored)
+- `pyproject.toml` - Project dependencies managed with `uv`
+
+The repository uses a simple trunk-based development model on the `main` branch with sequential commits, one per lesson.
+
 ## 📁 Project Structure
 
 Understanding the repository layout helps you navigate and contribute effectively:

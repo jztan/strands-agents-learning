@@ -98,19 +98,15 @@ uv run jupyter lab lesson_01_hello_world.ipynb
 
 ✨ **That's it!** You now have a working Strands agent with intelligent provider selection.
 
-### 📓 Two Learning Formats
+### 📓 Recommended: Use Jupyter Notebooks
 
-This repository provides **two formats** for each lesson:
+Each lesson comes as both a Python script (`.py`) and Jupyter notebook (`.ipynb`). **We recommend using notebooks** for learning:
+- Run code cell-by-cell to understand each concept
+- Experiment and modify inline
+- See outputs immediately
+- Add your own notes
 
-| Format | File Type | Best For | Key Features |
-|--------|-----------|----------|--------------|
-| **Python Scripts** 📄 | `.py` | Reference & Production | • Run complete lessons end-to-end<br>• Easy execution: `uv run python lesson_XX.py`<br>• See full flow from start to finish<br>• Better for version control |
-| **Jupyter Notebooks** 📓 | `.ipynb` | Learning & Experimenting | • Run code cell-by-cell<br>• Experiment and modify inline<br>• See outputs immediately<br>• Add your own notes<br>• No async event loop issues<br>• **Recommended for self-paced learning** |
-
-**Quick decision:**
-- 🎓 **Learning/Experimenting?** → Use Jupyter Notebooks (`.ipynb`)
-- 📚 **Reference/Production?** → Use Python Scripts (`.py`)
-
+Python scripts are provided for reference and can be run directly with `uv run python lesson_XX.py`.
 ## 📚 Learning Path & Agent Patterns
 
 | Level | Lesson | Agent Pattern | Topics |
@@ -128,19 +124,6 @@ This repository provides **two formats** for each lesson:
 | **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
 **Progress: 5/10 lessons complete (50%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
-
-## 🗂️ Repository Overview
-
-Each lesson comes in two formats:
-- **`.py` files** - Complete Python scripts for reference
-- **`.ipynb` files** - Interactive Jupyter notebooks for learning
-
-Key files:
-- `lesson_utils.py` - Shared utilities (model creation, environment setup)
-- `.env.example` - Template for API key configuration
-- `experiments/` - Your sandbox for trying variations (gitignored)
-
-For detailed project structure and development setup, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 💡 Learning Tips
 
