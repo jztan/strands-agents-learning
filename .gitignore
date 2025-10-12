@@ -180,6 +180,10 @@ checkpoint-*.md
 learning-plan.md
 AGENTS.md
 CLAUDE.md
+test_*.py
+reproduce_*.py
+GITHUB_ISSUE_*.md
+REPO_COMPARISON_*.md
 
 # uv
 uv.lock

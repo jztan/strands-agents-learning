@@ -35,6 +35,7 @@ Each lesson teaches distinct architectural patterns with working code you can ru
   - **OpenAI** ([get key](https://platform.openai.com/api-keys)) - Recommended
   - **Anthropic** ([get key](https://console.anthropic.com/)) - Alternative
   - **Google Gemini** ([get key](https://aistudio.google.com/app/apikey)) - Alternative
+  - **AWS Bedrock** ([setup guide](https://docs.aws.amazon.com/bedrock/latest/userguide/setting-up.html)) - Enterprise
   - **Ollama** (local, free) - For advanced users
 - Basic understanding of Python async/await and decorators
 
@@ -69,6 +70,14 @@ cp .env.example .env
 # OPENAI_API_KEY=your_openai_key_here        # ← Recommended
 # ANTHROPIC_API_KEY=your_anthropic_key_here  # ← Alternative
 # GOOGLE_API_KEY=your_google_key_here        # ← Alternative
+
+# Or configure AWS Bedrock (requires AWS credentials + model access):
+# Step 1: Configure AWS credentials
+#   aws configure  # Enter AWS Access Key ID and Secret Access Key
+# Step 2: Enable model access (one-time)
+#   Visit: https://console.aws.amazon.com/bedrock/
+#   Go to: Model access (left sidebar)
+#   Enable: Amazon Nova Lite model
 ```
 
 #### Step 4: Run Your First Lesson

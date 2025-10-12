@@ -71,6 +71,13 @@ try:
 except ImportError:
     GEMINI_AVAILABLE = False
 
+try:
+    from strands.models.bedrock import BedrockModel
+    import boto3
+    BEDROCK_AVAILABLE = True
+except ImportError:
+    BEDROCK_AVAILABLE = False
+
 # ============================================================================
 # Configuration Constants
 # ============================================================================
@@ -83,6 +90,7 @@ DEFAULT_TEMPERATURE = 0.7
 OPENAI_MODEL = "gpt-4o-mini"
 ANTHROPIC_MODEL = "claude-3-5-haiku-20241022"
 GEMINI_MODEL = "gemini-2.0-flash"
+BEDROCK_MODEL = "amazon.nova-lite-v1:0"  # Amazon Nova Lite (cost-efficient)
 
 # ============================================================================
 # Multi-Provider Model Creation
@@ -95,8 +103,9 @@ def create_working_model(lesson_name=""):
     Tries providers in order of preference:
     1. OpenAI (gpt-4o-mini) - Fast and cost-effective
     2. Anthropic (claude-3-5-haiku-20241022) - Good for Strands
-    3. Google Gemini (gemini-2.0-flash-lite) - Balanced performance
-    4. Ollama (local models) - Free but slower
+    3. Google Gemini (gemini-2.0-flash) - Balanced performance
+    4. AWS Bedrock (amazon.nova-lite-v1:0) - Enterprise, AWS integrated
+    5. Ollama (local models) - Free but slower
 
     Args:
         lesson_name (str): Optional context for adjusting model configuration.
@@ -169,7 +178,13 @@ def create_working_model(lesson_name=""):
                 }
             )
 
-    # Try Ollama fourth (local option)
+    # Try Bedrock fourth (AWS integrated)
+    if BEDROCK_AVAILABLE:
+        bedrock_model = _try_bedrock_connection(lesson_context, config_note, max_tokens, temperature)
+        if bedrock_model:
+            return bedrock_model
+
+    # Try Ollama fifth (local option)
     if OLLAMA_AVAILABLE:
         ollama_model = _try_ollama_connection(lesson_context, config_note)
         if ollama_model:
@@ -178,6 +193,39 @@ def create_working_model(lesson_name=""):
     # No working configuration found
     print_no_working_model_error()
     return None
+
+def _try_bedrock_connection(lesson_context="", config_note="", max_tokens=500, temperature=0.7):
+    """
+    Attempt to connect to AWS Bedrock and return a working model.
+
+    Checks for AWS credentials using boto3's standard credential chain.
+
+    Returns:
+        BedrockModel instance or None if not available
+    """
+    try:
+        # Check if AWS credentials are configured
+        session = boto3.Session()
+        credentials = session.get_credentials()
+
+        if credentials is None:
+            return None
+
+        # Get current credentials to verify they're valid
+        current_creds = credentials.get_frozen_credentials()
+        if not current_creds.access_key:
+            return None
+
+        # Credentials found, create Bedrock model
+        print(f"☁️ Using AWS Bedrock {BEDROCK_MODEL}{lesson_context}{config_note}")
+        return BedrockModel(
+            model_id=BEDROCK_MODEL,
+            max_tokens=max_tokens,
+            temperature=temperature
+        )
+    except Exception:
+        # AWS credentials not configured or other error
+        return None
 
 def _try_ollama_connection(lesson_context="", config_note=""):
     """
@@ -251,6 +299,7 @@ def print_no_api_key_warning():
     print("      • OPENAI_API_KEY (get from: https://platform.openai.com/api-keys)")
     print("      • ANTHROPIC_API_KEY (get from: https://console.anthropic.com/)")
     print("      • GOOGLE_API_KEY (get from: https://aistudio.google.com/app/apikey)")
+    print("      • AWS Credentials (configure: aws configure)")
     print("   3. Or run Ollama locally for free (slower)")
     print("      • Install: https://ollama.ai")
     print("      • Run: ollama serve")
@@ -324,6 +373,7 @@ __all__ = [
     "OPENAI_AVAILABLE",
     "ANTHROPIC_AVAILABLE",
     "GEMINI_AVAILABLE",
+    "BEDROCK_AVAILABLE",
     "OLLAMA_AVAILABLE",
     "DEFAULT_MAX_TOKENS",
     "DEFAULT_TEMPERATURE"
