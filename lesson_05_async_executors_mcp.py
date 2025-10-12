@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """
-Lesson 5: Async Streaming, Executors & Multi-modal
+Lesson 5: Async Streaming, Executors, Multi-modal & MCP
 
-Master async operations, streaming, tool execution strategies, and multi-modal content:
+Master async operations, streaming, tool execution strategies, multi-modal content,
+and external tool integration via Model Context Protocol:
 - Async tool definition with async def and await
 - Streaming progress updates with yield in async tools
 - Using agent.stream_async() for real-time responses
 - ConcurrentToolExecutor for parallel tool execution (default)
 - SequentialToolExecutor for ordered tool execution
 - Multi-modal content (images, PDFs, documents)
+- Model Context Protocol (MCP) for external tool integration
+- Combining MCP tools with custom async tools
 
 Learning Objectives:
 □ Create async tools with yield for streaming progress
@@ -16,6 +19,9 @@ Learning Objectives:
 □ Compare ConcurrentToolExecutor vs SequentialToolExecutor performance
 □ Process multi-modal content (images, PDFs) in agent messages
 □ Understand when to use concurrent vs sequential execution
+□ Integrate external tools via MCP (AWS docs, Strands docs)
+□ Combine MCP tools with custom Python tools
+□ Use context managers with MCP: with mcp_client:
 """
 
 import asyncio
@@ -498,6 +504,142 @@ async def part5_multimodal_content():
 
 
 # ============================================================================
+# Part 6: MCP Integration - External Tools via Model Context Protocol
+# ============================================================================
+# MCP enables agents to use tools from external servers, extending capabilities
+# beyond custom Python tools. Strands supports stdio, SSE, and HTTP transports.
+# Reference: strandsagents.com/latest/.../tools/mcp-tools/
+
+
+async def part6_mcp_integration():
+    """Demonstrate MCP integration with external tool servers."""
+    print("\n" + "=" * 70)
+    print("PART 6: MCP INTEGRATION")
+    print("=" * 70)
+
+    model = create_working_model()
+    if not model:
+        print_troubleshooting()
+        return
+
+    # Import MCP modules (lazy import to avoid errors if not installed)
+    try:
+        from mcp import stdio_client, StdioServerParameters
+        from strands.tools.mcp import MCPClient
+    except ImportError:
+        print("\n⚠️  MCP packages not available")
+        print("   To use MCP integration:")
+        print("   1. Install MCP: uv pip install mcp")
+        print("   2. Install servers: uvx install aws-documentation-mcp-server")
+        print("   Skipping MCP demonstration...")
+        return
+
+    print("\n📡 Demonstrating Model Context Protocol (MCP)")
+    print(
+        "MCP allows agents to use external tools from specialized servers\n"
+    )
+
+    # ========================================================================
+    # Example A: AWS Documentation MCP Server
+    # ========================================================================
+    print("Example A: AWS Documentation MCP Server")
+    print("MCP enables access to external documentation and APIs")
+    print("-" * 70)
+
+    try:
+        # Create MCP client for AWS docs (stdio transport)
+        aws_docs_client = MCPClient(
+            lambda: stdio_client(
+                StdioServerParameters(
+                    command="uvx",
+                    args=["awslabs.aws-documentation-mcp-server@latest"]
+                )
+            )
+        )
+
+        print("Connecting to AWS documentation server via stdio...")
+        with aws_docs_client:
+            # Discover available MCP tools
+            mcp_tools = aws_docs_client.list_tools_sync()
+            print(f"✓ Connected! Found {len(mcp_tools)} AWS documentation tools\n")
+
+            # Create agent with MCP tools
+            agent = Agent(
+                model=model,
+                tools=mcp_tools,
+                system_prompt="You help with AWS services. "
+                "Use documentation tools for accurate information.",
+            )
+
+            # Agent will automatically select and use MCP tools
+            response = agent("What is AWS Lambda and when should I use it?")
+            print(f"🤖 Agent: {response}\n")
+
+    except Exception as e:
+        print(f"⚠️  AWS MCP server not available: {e}")
+        print("   Note: This is optional - MCP servers require external packages")
+        print("   Install with: uvx install awslabs.aws-documentation-mcp-server")
+        print("   Continuing without MCP example...\n")
+
+    # ========================================================================
+    # Example B: Combining MCP Tools with Custom Async Tools
+    # ========================================================================
+    print("Example B: Hybrid Agent (MCP + Custom Async Tools)")
+    print("-" * 70)
+
+    try:
+        aws_docs_client = MCPClient(
+            lambda: stdio_client(
+                StdioServerParameters(
+                    command="uvx",
+                    args=["awslabs.aws-documentation-mcp-server@latest"]
+                )
+            )
+        )
+
+        # Re-use async tool from Part 1
+        @tool
+        async def process_records(count: int) -> str:
+            """Process records with progress."""
+            await asyncio.sleep(0.5)
+            return f"Processed {count} records"
+
+        print("Combining external MCP tools with custom async tools...")
+        with aws_docs_client:
+            mcp_tools = aws_docs_client.list_tools_sync()
+
+            # Combine MCP tools + custom async tools
+            all_tools = mcp_tools + [process_records]
+
+            agent = Agent(
+                model=model,
+                tools=all_tools,
+                system_prompt="You can both lookup AWS documentation and "
+                "process records. Use the right tool for each task.",
+            )
+
+            print(f"✓ Agent has {len(all_tools)} tools "
+                  f"({len(mcp_tools)} MCP + 1 custom)\n")
+
+            response = agent(
+                "Look up AWS DynamoDB, then process 50 records"
+            )
+            print(f"🤖 Agent: {response}\n")
+
+    except Exception as e:
+        print(f"⚠️  Combined tools demo skipped: {e}\n")
+
+    # Key concepts summary
+    print("\n💡 MCP Key Concepts:")
+    print("   1. Context managers required: with mcp_client:")
+    print("   2. Tools discovered via list_tools_sync()")
+    print("   3. MCP tools work alongside custom Python tools")
+    print("   4. stdio transport runs servers as subprocesses (uvx)")
+    print("   5. Multiple servers can be used together")
+    print("   6. SSE and HTTP transports also available")
+
+
+# ============================================================================
 # Main Function
 # ============================================================================
 
@@ -505,7 +647,7 @@ async def part5_multimodal_content():
 async def async_main():
     """Run all async lesson examples."""
     print("\n" + "=" * 70)
-    print("LESSON 5: Async Streaming, Executors & Multi-modal")
+    print("LESSON 5: Async Streaming, Executors, Multi-modal & MCP")
     print("=" * 70)
     print("\nThis lesson demonstrates:")
     print("- Async tools with streaming progress (yield)")
@@ -513,6 +655,7 @@ async def async_main():
     print("- SequentialToolExecutor for ordered execution")
     print("- Performance comparison: concurrent vs sequential")
     print("- Multi-modal content (images, PDFs)")
+    print("- Model Context Protocol (MCP) for external tool integration")
 
     # Load environment and check API keys
     load_environment()
@@ -524,6 +667,7 @@ async def async_main():
     await part3_sequential_executor()
     await part4_performance_comparison()
     await part5_multimodal_content()
+    await part6_mcp_integration()
 
     # Success criteria
     print("\n" + "=" * 70)
@@ -536,13 +680,16 @@ async def async_main():
     print("✓ Stream events are properly formatted and received")
     print("✓ Agent processes images (PNG, JPEG) correctly")
     print("✓ Multi-modal agents invoked with real receipt image")
+    print("✓ MCP tools discovered and invoked successfully")
+    print("✓ MCP tools work alongside custom Python tools")
+    print("✓ Context manager pattern (with mcp_client:) understood")
     print("✓ Document analyzer and receipt extractor demonstrated")
 
     # Experiments to try
     print("\n🧪 Experiments to Try:")
     print("   ")
     print("   Setup: Copy this lesson to experiments/ before tinkering:")
-    print("      cp lesson_05_async_executors.py experiments/my_variant.py")
+    print("      cp lesson_05_async_executors_mcp.py experiments/my_variant.py")
     print("      uv run python experiments/my_variant.py")
     print("   ")
     print("   Exercises:")
@@ -566,6 +713,22 @@ async def async_main():
     print(
         "   8. Build a document classification tool using "
         "multi-modal inputs"
+    )
+    print(
+        "   9. Integrate AWS Documentation MCP server for "
+        "technical queries about AWS services"
+    )
+    print(
+        "   10. Use Strands documentation MCP server alongside "
+        "custom Python tools in one agent"
+    )
+    print(
+        "   11. Build an agent combining MCP tools, async tools, "
+        "and multi-modal content analysis"
+    )
+    print(
+        "   12. Compare MCP tools with equivalent custom Python "
+        "implementations for performance"
     )
 
 

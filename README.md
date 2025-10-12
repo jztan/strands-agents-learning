@@ -115,9 +115,9 @@ Python scripts are provided for reference and can be run directly with `uv run p
 | | **Lesson 2: First Tool** ✅ | Tool-Enhanced | @tool decorator, calculator, error handling |
 | | **Lesson 3: Multiple Tools** ✅ | Tool-Enhanced | Tool coordination, weather/time/converter |
 | **Intermediate** | **Lesson 4: Agent State** ✅ | State & Sessions | agent.state API, FileSessionManager, persistence |
-| | **Lesson 5: Async & Executors** ✅ | Async Streaming & Multi-modal | Async tools, yield, executors, images, PDFs |
+| | **Lesson 5: Async, Executors & MCP** ✅ | Async Streaming, Multi-modal & Integration | Async tools, yield, executors, images, PDFs, MCP |
 | **Advanced** | **Lesson 6: Hooks & Output** 🚧 | Hooks & Structured | Lifecycle hooks, Pydantic models, logging |
-| | **Lesson 7: Advanced Tools & MCP** 🚧 | Context-Aware & Integration | Class-based tools, ToolContext, conversation mgmt, MCP |
+| | **Lesson 7: Advanced Tools** 🚧 | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
 | **Multi-Agent** | **Lesson 8: Orchestration** 🚧 | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
 | | **Lesson 9: Distributed Agents** 🚧 | Agents-as-Tools & A2A | Hierarchical agents, cross-platform communication |
 | **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
