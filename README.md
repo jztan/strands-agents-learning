@@ -146,6 +146,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
 - **[Strands Documentation](https://strandsagents.com/latest/documentation/docs/)** - Official framework docs
 - **[Strands GitHub](https://github.com/strands-agents/sdk-python)** - Source code and issues
+- **[How I Built My First Intelligent Agent with the Strands Framework](https://www.thefirstcommit.com/how-i-built-my-first-intelligent-agent-with-the-strands-framework-4cd73fb1cddf)** - A practical walkthrough of building agents (by the author)
 
 ## 📄 License
 
