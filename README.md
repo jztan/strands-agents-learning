@@ -8,10 +8,37 @@
 
 ## 🎯 What You'll Learn
 
-This repository provides a complete **hands-on learning path** for the Strands Agent Framework. You'll master **10+ agent design patterns** through progressive, practical examples:
+Master the **Strands Agent Framework** through **10 progressive lessons** teaching **production-ready agent patterns** used by leading AI companies.
 
-- **Foundation** → **Intermediate** → **Advanced** → **Multi-Agent** → **Production**
-- **Basic Conversational** → **Tool-Enhanced** → **State & Async** → **Hooks & Context** → **Multi-Agent Orchestration** → **Distributed Systems** → **Production-Ready**
+### Your Learning Journey (25-30 hours)
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#10b981','primaryTextColor':'#fff','primaryBorderColor':'#059669','lineColor':'#6366f1','secondaryColor':'#8b5cf6','tertiaryColor':'#ec4899'}}}%%
+graph LR
+    A["🌱 Foundation<br/><b>Lessons 1-3</b><br/><i>3-4 hrs</i>"] --> B["🔧 Intermediate<br/><b>Lessons 4-5</b><br/><i>5-6 hrs</i>"]
+    B --> C["🚀 Advanced<br/><b>Lessons 6-7</b><br/><i>6-7 hrs</i>"]
+    C --> D["💫 Multi-Agent<br/><b>Lessons 8-9</b><br/><i>10-12 hrs</i>"]
+    D --> E["🏭 Production<br/><b>Lesson 10</b><br/><i>6-7 hrs</i>"]
+
+    A -.-> A1["• Basic Conversational<br/>• Tool-Enhanced"]
+    B -.-> B1["• State & Sessions<br/>• Async Streaming<br/>• Multi-modal"]
+    C -.-> C1["• Hooks & Output<br/>• Context-Aware Tools<br/>• Conversation Mgmt"]
+    D -.-> D1["• Graph, Swarm, Workflow<br/>• Agents-as-Tools<br/>• A2A Protocol"]
+    E -.-> E1["• Guardrails & PII<br/>• Observability<br/>• Testing"]
+
+    style A fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
+    style B fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#fff
+    style C fill:#8b5cf6,stroke:#7c3aed,stroke-width:3px,color:#fff
+    style D fill:#ec4899,stroke:#db2777,stroke-width:3px,color:#fff
+    style E fill:#f59e0b,stroke:#d97706,stroke-width:3px,color:#fff
+    style A1 fill:#d1fae5,stroke:#059669,stroke-width:2px,color:#065f46
+    style B1 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e40af
+    style C1 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#6b21a8
+    style D1 fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#9f1239
+    style E1 fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e
+```
+
+**What you'll build:** Simple chatbots → Tool-using agents → Stateful systems → Multi-agent teams → Production applications
 
 Each lesson teaches distinct architectural patterns with working code you can run, modify, and build upon.
 
