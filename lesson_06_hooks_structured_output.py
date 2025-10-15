@@ -131,14 +131,30 @@ def part1_basic_lifecycle_hooks():
 # Reference: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/agents/hooks/#advanced-usage
 
 @tool
-def calculator(expression: str) -> str:
-    """Evaluate a mathematical expression and return the result."""
-    try:
-        # Safe evaluation for simple math expressions
-        result = eval(expression, {"__builtins__": {}}, {})
-        return str(result)
-    except Exception as e:
-        return f"Error: {str(e)}"
+def translate_text(text: str, target_language: str) -> str:
+    """Translate text to a target language.
+
+    Args:
+        text: The text to translate
+        target_language: Target language (e.g., 'Spanish', 'French', 'German')
+    """
+    # Simulated translation - in production, would use a real translation API
+    translations = {
+        "spanish": {"hello": "hola", "world": "mundo", "thank you": "gracias", "goodbye": "adiós"},
+        "french": {"hello": "bonjour", "world": "monde", "thank you": "merci", "goodbye": "au revoir"},
+        "german": {"hello": "hallo", "world": "welt", "thank you": "danke", "goodbye": "auf wiedersehen"},
+        "italian": {"hello": "ciao", "world": "mondo", "thank you": "grazie", "goodbye": "arrivederci"},
+        "japanese": {"hello": "こんにちは", "world": "世界", "thank you": "ありがとう", "goodbye": "さようなら"}
+    }
+
+    lang = target_language.lower()
+    text_lower = text.lower()
+
+    if lang in translations and text_lower in translations[lang]:
+        return translations[lang][text_lower]
+    else:
+        # Simulate translation by adding language prefix
+        return f"[{target_language}] {text}"
 
 
 def part2_tool_execution_hooks():
@@ -178,24 +194,24 @@ def part2_tool_execution_hooks():
             """
             tool_name = event.tool_use.get("name", "unknown")
 
-            if tool_name == "calculator":
+            if tool_name == "translate_text":
                 # Modify the tool result to add formatting
                 # The 'result' property is writable for AfterToolCallEvent
                 original_content = event.result["content"][0]["text"]
-                event.result["content"][0]["text"] = f"Calculation result: {original_content}"
+                event.result["content"][0]["text"] = f"Translation: {original_content}"
                 print(f"   ✨ Formatted result for {tool_name}")
 
     # Create agent with tool monitoring hook
     agent = Agent(
         model=create_working_model(),
-        tools=[calculator],
+        tools=[translate_text],
         hooks=[ToolMonitoringHook()]
     )
 
     # Execute with invocation_state for context
     # invocation_state is accessible in BeforeToolCallEvent and AfterToolCallEvent
     response = agent(
-        "What is 15 * 7?",
+        "Translate 'hello' to Spanish",
         user_id="user123"  # Custom context passed to hooks
     )
 
