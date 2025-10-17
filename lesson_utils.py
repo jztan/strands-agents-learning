@@ -112,6 +112,7 @@ def create_working_model(lesson_name=""):
             - "demonstration"/"demo": Lower temp (0.5), fewer tokens (300) - predictable
             - "creative": Higher temp (0.9), more tokens (800) - varied responses
             - "precise"/"tool": Very low temp (0.3), standard tokens (500) - deterministic
+            - "multiagent": Standard temp (0.7), high tokens (1500) - multi-agent workflows
             - Default: Standard settings (0.7 temp, 500 tokens)
 
     Returns:
@@ -133,6 +134,10 @@ def create_working_model(lesson_name=""):
         temperature = 0.3
         max_tokens = 500
         config_note = " (precise mode)"
+    elif "multiagent" in context_lower or "multi-agent" in context_lower:
+        temperature = DEFAULT_TEMPERATURE
+        max_tokens = 1500
+        config_note = " (multi-agent mode)"
     else:
         temperature = DEFAULT_TEMPERATURE
         max_tokens = DEFAULT_MAX_TOKENS
