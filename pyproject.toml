@@ -24,6 +24,7 @@ classifiers = [
 ]
 dependencies = [
     "strands-agents[a2a]>=1.12.0",
+    "strands-agents-tools>=0.2.0",
     "python-dotenv>=1.0.0",
     "openai>=1.107.2",
     "anthropic>=0.25.0",
@@ -37,11 +38,6 @@ dependencies = [
     "nbformat>=5.9.0",
     "rich>=13.7.0",
     "reportlab>=4.0.0",
-]
-
-[project.optional-dependencies]
-tools = [
-    "strands-agents-tools>=0.2.0",
 ]
 
 [project.urls]
