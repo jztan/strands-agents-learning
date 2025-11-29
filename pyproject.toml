@@ -1,7 +1,7 @@
 [project]
 name = "strands-agents-learning"
 version = "0.1.0"
-description = "Learn Strands Agent Framework through 7 progressive, hands-on lessons"
+description = "Learn Strands Agent Framework through 10 progressive, hands-on lessons"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 authors = [
@@ -24,12 +24,12 @@ classifiers = [
 ]
 dependencies = [
     "strands-agents[a2a]>=1.12.0",
-    "strands-agents-tools>=0.2.0",
+    "strands-agents-tools>=0.2.7",
     "python-dotenv>=1.0.0",
     "openai>=1.107.2",
-    "anthropic>=0.25.0",
-    "google-genai>=0.1.0",
-    "boto3>=1.28.0",
+    "anthropic>=0.67.0",
+    "google-genai>=1.43.0",
+    "boto3>=1.40.30",
     "requests>=2.31.0",
     "Pillow>=10.0.0",
     "ipython>=8.18.1",
@@ -53,8 +53,8 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["."]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = []
 
 [tool.hatch.metadata]
 allow-direct-references = true
