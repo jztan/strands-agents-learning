@@ -144,10 +144,10 @@ Python scripts are provided for reference and production use.
 | | **Lesson 7: Advanced Tools** ✅ | Context-Aware | Class-based tools, ToolContext, conversation mgmt |
 | **Multi-Agent** | **Lesson 8: Orchestration** ✅ | Graph, Swarm & Workflow | Multi-agent patterns, state sharing |
 | | **Lesson 9: Distributed Agents** ✅ | Agents-as-Tools & A2A | Hierarchical agents, cross-platform communication |
-| **Production** | **Lesson 10: Production** 🚧 | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
+| **Production** | **Lesson 10: Production** ✅ | Safety, Observability & Eval | Guardrails, PII redaction, OpenTelemetry, testing |
 | **Bonus** | **AWS Deployment** 🚧 | Lambda, EC2, ECS, Bedrock | Serverless, containers, managed AI, IaC |
 
-**Progress: 9/10 lessons complete (90%)** • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
+**Progress: 10/10 lessons complete (100%)** 🎉 • **Each lesson includes:** Learning objectives • Working code • Experiments • Success criteria • Common pitfalls
 
 ## 💡 Learning Tips
 
